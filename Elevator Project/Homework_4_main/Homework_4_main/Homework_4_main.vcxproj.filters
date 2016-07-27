@@ -18,6 +18,9 @@
     <ClCompile Include="hw4_Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="passenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="passenger.h">
