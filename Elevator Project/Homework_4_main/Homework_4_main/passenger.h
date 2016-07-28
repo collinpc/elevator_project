@@ -16,31 +16,42 @@ private:
 	int wait_total; 
 	int wait_arrival;
 
-	int arrive_time;
+	int arrive_time; //when the elevator gets to the person
 	int call_time;
 	int exit_time;
-
-	int calculate_trip_time();
-	int calculate_arrival_time(); //when the elevator gets to the person
+	int calculate_arrival_weight_time();
 
 
 
 
 public:
 
-
+    //Constructors
+    
+    Passenger();
+    
+    
 	//setters
 
 
-	void set_wait_total(int time)
+	void set_call_time(int time)
 	{
-		wait_total = time;
+		call_time = time;
 	}
 
-	void set_wait_arrival(int time)
+	void set_arival_time(int time)
 	{
-		wait_arrival = time;
+		arrive_time = time;
 	}
+    
+    void set_exit_time(int time)
+    {
+        exit_time = time;
+    }
+    
+    void set_floor_from(int floor);
+    
+    void set_floor_to(int floor);
 
 
 	//Getters
@@ -54,10 +65,9 @@ public:
 	{
 		return wait_arrival;
 	}
+    void calculate_trip_time();
 
 	
-
-
 
 };
 
