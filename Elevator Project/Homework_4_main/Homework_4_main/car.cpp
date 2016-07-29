@@ -9,18 +9,16 @@
 #include "car.h"
 
 Car::Car() {
-    //Queue Demo
-    Passenger* passenger1 = new Passenger();
-    
-    passengers->push(*passenger1);
-    passengers->front().calculate_trip_time();
-    cout << passengers->front().get_wait_total() << endl;
 }
 
-//Take people from floor que and ad them to Car Que
+//Remove people from floor que and add them to Car Que. Also signal floors to stop at.
 void Car::load_car(queue<Passenger> *new_passengers) {
+    cout << "Loading Passenger" << endl;
     for (unsigned int c; c < new_passengers->size(); c++) {
-        passengers->push(new_passengers->front());
+        Passenger passenger = new_passengers->front();
+        cout << "Passenger going to floor " << passenger.get_floor_to() << endl;
+        passengers->push(passenger);
+        floors_to_stop_at[passenger.get_floor_to()] = true;
         new_passengers->pop();
     }
 }

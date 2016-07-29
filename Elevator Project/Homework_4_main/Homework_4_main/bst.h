@@ -36,206 +36,206 @@
 #endif
 
 template <class T, class S> class BinarySearchTree {
- public:
-  BinarySearchTree() : root_(NULL) {
-  }
-
-  virtual ~BinarySearchTree() {
-  }
-
-  void Add(const T key, S value) {
-    if (root_ == NULL) {
-      root_ = new Node(key, value);
-      assert(CheckSanity());
-      return;
+public:
+    BinarySearchTree() : root_(NULL) {
     }
-    // N.B.
-    // Since this is *NOT* a balanced tree,
-    // we use iterative approach instread of recursive one
-    // to avoid stack overflow.
-    for (Node* current = root_;;) {
-      if (current->key == key) {
-        current->value = value;
-        assert(CheckSanity());
-        return;
-      } else if (current->key < key) {
-        if (current->right == NULL) {
-          current->right = new Node(key, value);
-          assert(CheckSanity());
-          return;
+    
+    virtual ~BinarySearchTree() {
+    }
+    
+    void Add(const T key, S value) {
+        if (root_ == NULL) {
+            root_ = new Node(key, value);
+            assert(CheckSanity());
+            return;
+        }
+        // N.B.
+        // Since this is *NOT* a balanced tree,
+        // we use iterative approach instread of recursive one
+        // to avoid stack overflow.
+        for (Node* current = root_;;) {
+            if (current->key == key) {
+                current->value = value;
+                assert(CheckSanity());
+                return;
+            } else if (current->key < key) {
+                if (current->right == NULL) {
+                    current->right = new Node(key, value);
+                    assert(CheckSanity());
+                    return;
+                } else {
+                    current = current->right;
+                }
+            } else {
+                if (current->left == NULL) {
+                    current->left = new Node(key, value);
+                    assert(CheckSanity());
+                    return;
+                } else {
+                    current = current->left;
+                }
+            }
+        }
+    }
+    
+    S GetLowerNearest(const T key) const {
+        Node* last_node_lt_key = NULL;
+        Node* n = root_;
+        
+        while (n != NULL) {
+            if (n->key == key) {
+                return n->value;
+            } else if (n->key < key) {
+                last_node_lt_key = n;
+                n = n->right;
+            } else {
+                n = n->left;
+            }
+        }
+        if (last_node_lt_key == NULL) {
+            return S();
         } else {
-          current = current->right;
+            return last_node_lt_key->value;
         }
-      } else {
-        if (current->left == NULL) {
-          current->left = new Node(key, value);
-          assert(CheckSanity());
-          return;
-        } else {
-          current = current->left;
-        }
-      }
     }
-  }
-
-  S GetLowerNearest(const T key) const {
-    Node* last_node_lt_key = NULL;
-    Node* n = root_;
-
-    while (n != NULL) {
-      if (n->key == key) {
-        return n->value;
-      } else if (n->key < key) {
-        last_node_lt_key = n;
-        n = n->right;
-      } else {
-        n = n->left;
-      }
-    }
-    if (last_node_lt_key == NULL) {
-      return S();
-    } else {
-      return last_node_lt_key->value;
-    }
-  }
-
-  S Get(const T key, bool* found = NULL) const {
-    for (Node* current = root_;;) {
-      if (current == NULL) {
-        if (found) {
-          *found = false;
+    
+    S Get(const T key, bool* found = NULL) const {
+        for (Node* current = root_;;) {
+            if (current == NULL) {
+                if (found) {
+                    *found = false;
+                }
+                return S();
+            } else if (current->key == key) {
+                if (found) {
+                    *found = true;
+                }
+                return current->value;
+            } else if (current->key < key) {
+                current = current->right;
+            } else {
+                current = current->left;
+            }
         }
-        return S();
-      } else if (current->key == key) {
-        if (found) {
-          *found = true;
-        }
-        return current->value;
-      } else if (current->key < key) {
-          current = current->right;
-      } else {
-          current = current->left;
-      }
     }
-  }
-
-  void Remove(const T key, bool* removed = NULL) {
-    Node* parent = NULL;
-    for (Node* current = root_;;) {
-      if (current == NULL) {
-        if (removed) {
-          *removed = false;
+    
+    void Remove(const T key, bool* removed = NULL) {
+        Node* parent = NULL;
+        for (Node* current = root_;;) {
+            if (current == NULL) {
+                if (removed) {
+                    *removed = false;
+                }
+                assert(CheckSanity());
+                return;
+            } else if (current->key == key) {
+                RemoveNode(parent, current);
+                if (removed) {
+                    *removed = true;
+                }
+                assert(CheckSanity());
+                return;
+            } else if (current->key < key) {
+                parent = current;
+                current = current->right;
+            } else {
+                parent = current;
+                current = current->left;
+            }
         }
-        assert(CheckSanity());
-        return;
-      } else if (current->key == key) {
-        RemoveNode(parent, current);
-        if (removed) {
-          *removed = true;
-        }
-        assert(CheckSanity());
-        return;
-      } else if (current->key < key) {
-        parent = current;
-        current = current->right;
-      } else {
-        parent = current;
-        current = current->left;
-      }
     }
-  }
-
-
-  bool CheckSanity() const {
+    
+    
+    bool CheckSanity() const {
 #ifdef MONA
-    return true;
+        return true;
 #else
-    std::vector<T> keys;
-    GetInOrder(root_, &keys);
-    std::vector<T> sorted = keys;
-    sort(keys.begin(), keys.end());
-    return keys == sorted;
+        std::vector<T> keys;
+        GetInOrder(root_, &keys);
+        std::vector<T> sorted = keys;
+        sort(keys.begin(), keys.end());
+        return keys == sorted;
 #endif
-  }
-
- private:
-  struct Node {
-    Node(const T key, S value, Node* left = NULL, Node* right = NULL) :
+    }
+    
+private:
+    struct Node {
+        Node(const T key, S value, Node* left = NULL, Node* right = NULL) :
         key(key),
         value(value),
         left(left),
         right(right) {}
-
-    bool IsLeaf() const {
-      return left == NULL && right == NULL;
+        
+        bool IsLeaf() const {
+            return left == NULL && right == NULL;
+        }
+        
+        bool HasOnlyLeftChild() const {
+            return (left != NULL && right == NULL);
+        }
+        
+        bool HasOnlyRightChild() const {
+            return (left == NULL && right != NULL);
+        }
+        
+        T key;
+        S value;
+        Node* left;
+        Node* right;
+    };
+    
+    void RemoveNode(Node* parent, Node* node) {
+        if (node->IsLeaf()) {
+            if (parent == NULL) {
+                root_ = NULL;
+            } else if (parent->left == node) {
+                parent->left = NULL;
+            } else {
+                parent->right = NULL;
+            }
+            delete node;
+        } else if (node->HasOnlyLeftChild()) {
+            if (parent->left == node) {
+                parent->left = node->left;
+            } else {
+                parent->right = node->left;
+            }
+            delete node;
+        } else if (node->HasOnlyRightChild()) {
+            if (parent->left == node) {
+                parent->left = node->right;
+            } else {
+                parent->right = node->right;
+            }
+            delete node;
+        } else {
+            Node* parentOfLeftMost = node;
+            Node* leftMost = node->right;
+            while (leftMost->left) {
+                parentOfLeftMost = leftMost;
+                leftMost = leftMost->left;
+            }
+            if (parentOfLeftMost->left == leftMost) {
+                parentOfLeftMost->left = NULL;
+            } else {
+                parentOfLeftMost->right = NULL;
+            }
+            node->key = leftMost->key;
+            node->value = leftMost->value;
+            delete leftMost;
+        }
     }
-
-    bool HasOnlyLeftChild() const {
-      return (left != NULL && right == NULL);
+    
+    void GetInOrder(Node* node, std::vector<T>* keys) const {
+        if (node == NULL) {
+            return;
+        }
+        GetInOrder(node->left, keys);
+        keys->push_back(node->key);
+        GetInOrder(node->right, keys);
     }
-
-    bool HasOnlyRightChild() const {
-      return (left == NULL && right != NULL);
-    }
-
-    T key;
-    S value;
-    Node* left;
-    Node* right;
-  };
-
-  void RemoveNode(Node* parent, Node* node) {
-    if (node->IsLeaf()) {
-      if (parent == NULL) {
-        root_ = NULL;
-      } else if (parent->left == node) {
-        parent->left = NULL;
-      } else {
-        parent->right = NULL;
-      }
-      delete node;
-    } else if (node->HasOnlyLeftChild()) {
-      if (parent->left == node) {
-        parent->left = node->left;
-      } else {
-        parent->right = node->left;
-      }
-      delete node;
-    } else if (node->HasOnlyRightChild()) {
-      if (parent->left == node) {
-        parent->left = node->right;
-      } else {
-        parent->right = node->right;
-      }
-      delete node;
-    } else {
-      Node* parentOfLeftMost = node;
-      Node* leftMost = node->right;
-      while (leftMost->left) {
-        parentOfLeftMost = leftMost;
-        leftMost = leftMost->left;
-      }
-      if (parentOfLeftMost->left == leftMost) {
-        parentOfLeftMost->left = NULL;
-      } else {
-        parentOfLeftMost->right = NULL;
-      }
-      node->key = leftMost->key;
-      node->value = leftMost->value;
-      delete leftMost;
-    }
-  }
-
-  void GetInOrder(Node* node, std::vector<T>* keys) const {
-    if (node == NULL) {
-      return;
-    }
-    GetInOrder(node->left, keys);
-    keys->push_back(node->key);
-    GetInOrder(node->right, keys);
-  }
-
-  Node* root_;
+    
+    Node* root_;
 };
 
 #endif  // BST_H_

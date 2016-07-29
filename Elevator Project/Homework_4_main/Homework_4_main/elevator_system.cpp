@@ -8,6 +8,10 @@
 #include "elevator_system.h"
 #include <stdio.h>
 
-void Elevator_System::call_elevator(int floor) {
-    
+void Elevator_System::call_elevator(int floor, string directions) {
+    if (directions == "down") {
+        down_list->Add(floor, 1);
+    } else {
+        up_list->Add(floor, 1);
+    }
 }

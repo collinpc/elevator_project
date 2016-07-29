@@ -1,27 +1,26 @@
 #include <iostream>
 #include "passenger.h"
 #include "bst.h"
+#include "floor.h"
+#include <queue>
 #include "car.h"
 #include <cstdlib>
+#include <string>
+
+#define NUM_OF_FLOORS 12
 
 using namespace std;
 
 
 int main()
 {
-    Passenger* pass1 = new Passenger();
-    pass1->calculate_trip_time();
-	//cout << pass1->get_wait_total() << endl << endl;
-	//i changed thisewwe
-    Car* car1 = new Car();
-
-
-	return 0;
-
-
-
-
-	system("PAUSE");
-    return 0;
-
+    
+    Passenger * pas1 = new Passenger();
+    
+    queue<Passenger>* passengers = new queue<Passenger>;
+    
+    passengers->push(*pas1);
+    
+    Car * car1 = new Car();
+    car1->load_car(passengers);
 }

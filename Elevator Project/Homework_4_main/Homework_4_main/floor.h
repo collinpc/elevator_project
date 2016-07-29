@@ -1,4 +1,6 @@
 #pragma once
+
+#include <queue>
 // Controls
 #ifndef FLOOR
 #define FLOOR
@@ -10,9 +12,8 @@ class Floor
 public:
     Floor();
     Floor(int number);
-    
-    //Advance elevator cars by one second();
-    next();
-    
-}
+private:
+    queue<Passenger>* up_queue = new queue<Passenger>;
+    queue<Passenger>* down_queue = new queue<Passenger>;
+};
 #endif

@@ -65,6 +65,10 @@ public:
 	{
 		return wait_arrival;
 	}
+    int get_floor_to() {
+        return floor_to;
+    }
+    
     void calculate_trip_time();
 
 	
