@@ -1,8 +1,10 @@
 #include "passenger.h"
+#include <iostream>
 
 // Constructors
 
 Passenger::Passenger() {
+    cout << "creating new passenger" << endl;
     set_floor_to(2);
     set_floor_to(4);
     set_call_time(2);

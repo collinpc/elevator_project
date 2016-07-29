@@ -6,7 +6,9 @@
 #define CAR
 #include <iostream>
 #include <queue>
+#include "passenger.h"
 #include <map>
+#include <queue>
 #include "bst.h"
 using namespace std;
 
@@ -23,27 +25,17 @@ private:
 	int const home_floor = 3; // home floor
 	int const floor_current = 3;
 	
-	static BinarySearchTree<int, bool>*up_list = new BinarySearchTree<int, bool>; // up binary search treee
-	static BinarySearchTree<int, bool>*down_list = new BinarySearchTree<int, bool>; // down binary search tree
-
-
-
+    queue<Passenger>* passengers = new queue<Passenger>;
 	
-	
-
-	
-
-
-
-
-
 
 public:
-
+    Car();
+    
 	void go_up(); 
 	void go_down();
-
-
+    
+    //Take people from floor que and ad them to Car Que
+    void load_car(queue<Passenger>* new_passengers);
 
 
 };
