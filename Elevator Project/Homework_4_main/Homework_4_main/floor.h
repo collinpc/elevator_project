@@ -12,7 +12,7 @@ class Floor
 public:
     Floor();
     Floor(int number);
-private:
+protected:
     queue<Passenger>* up_queue = new queue<Passenger>;
     queue<Passenger>* down_queue = new queue<Passenger>;
 };

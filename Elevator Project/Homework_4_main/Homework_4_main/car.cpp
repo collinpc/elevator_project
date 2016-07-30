@@ -9,6 +9,21 @@
 #include "car.h"
 
 Car::Car() {
+    current_floor = home_floor;
+}
+
+void Car::send_to_floor(int floor) {
+    // add return 0 if elevator is busy
+    busy = true;
+    floors_to_stop_at[floor] = true;
+    next_floor = floor;
+    if (floor > current_floor) {
+        direction = "up";
+    } else if (floor < current_floor) {
+        direction = "down";
+    } else {
+        //Need to complete
+    }
 }
 
 //Remove people from floor que and add them to Car Que. Also signal floors to stop at.

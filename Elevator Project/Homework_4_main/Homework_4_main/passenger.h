@@ -2,8 +2,9 @@
 // Knows where elevator is going from/to, records time for events
 
 #pragma once
-#ifndef PASSENGER.H
-#define PASSENGER.H
+#ifndef PASSENGER//.H
+#define PASSENGER//.H
+
 using namespace std;
 
 

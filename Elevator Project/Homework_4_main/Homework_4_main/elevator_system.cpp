@@ -8,10 +8,21 @@
 #include "elevator_system.h"
 #include <stdio.h>
 
-void Elevator_System::call_elevator(int floor, string directions) {
-    if (directions == "down") {
-        down_list->Add(floor, 1);
-    } else {
-        up_list->Add(floor, 1);
-    }
+Elevator_System::Elevator_System(int num_of_floors, int num_of_cars) {
+    number_of_floors = num_of_floors;
+    number_of_cars = num_of_cars;
+    // Create list of cars
+    // Create list of floors
+}
+
+void Elevator_System::call_elevator(int floor, string direction, Passenger* passenger) {
+    
+    // Add passenger to floor queue
+    add_to_que(floor, passenger, direction);
+    
+}
+
+// Access que of correct floor and direction, add passenger to that queue
+void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
+    
 }
