@@ -21,6 +21,18 @@
     <ClCompile Include="passenger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="car.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elevator_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="passenger.h">
@@ -36,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

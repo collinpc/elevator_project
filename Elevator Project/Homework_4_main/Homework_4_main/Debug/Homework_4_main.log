@@ -1,0 +1,27 @@
+﻿  simulator.cpp
+  passenger.cpp
+  hw4_Source.cpp
+  floor.cpp
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(15): error C2061: syntax error: identifier 'Passenger'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(18): error C2143: syntax error: missing ';' before '<'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(18): error C2238: unexpected token(s) preceding ';'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(19): error C2143: syntax error: missing ';' before '<'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(19): error C2238: unexpected token(s) preceding ';'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(6): error C2065: 'Passenger': undeclared identifier
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(6): error C2065: 'passenger': undeclared identifier
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(6): error C2065: 'string': undeclared identifier
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(6): error C2146: syntax error: missing ')' before identifier 'direction'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(7): error C2143: syntax error: missing ';' before '{'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.cpp(7): error C2447: '{': missing function header (old-style formal list?)
+  elevator_system.cpp
+c:\homework 4\elevator project\homework_4_main\homework_4_main\elevator_system.cpp(32): error C2248: 'Floor::down_queue': cannot access protected member declared in class 'Floor'
+  c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(19): note: see declaration of 'Floor::down_queue'
+  c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(11): note: see declaration of 'Floor'
+c:\homework 4\elevator project\homework_4_main\homework_4_main\elevator_system.cpp(37): error C2248: 'Floor::up_queue': cannot access protected member declared in class 'Floor'
+  c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(18): note: see declaration of 'Floor::up_queue'
+  c:\homework 4\elevator project\homework_4_main\homework_4_main\floor.h(11): note: see declaration of 'Floor'
+  car.cpp
+  Generating Code...
+c:\homework 4\elevator project\homework_4_main\homework_4_main\car.cpp(32): warning C4700: uninitialized local variable 'c' used

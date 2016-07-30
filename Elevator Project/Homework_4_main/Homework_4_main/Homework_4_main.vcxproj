@@ -142,10 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="car.cpp" />
+    <ClCompile Include="elevator_system.cpp" />
+    <ClCompile Include="floor.cpp" />
     <ClCompile Include="hw4_Source.cpp" />
     <ClCompile Include="passenger.cpp" />
+    <ClCompile Include="simulator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bst.h" />
     <ClInclude Include="car.h" />
     <ClInclude Include="elevator_system.h" />
     <ClInclude Include="floor.h" />
