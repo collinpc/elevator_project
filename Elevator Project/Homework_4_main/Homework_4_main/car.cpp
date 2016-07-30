@@ -29,7 +29,7 @@ void Car::send_to_floor(int floor) {
 //Remove people from floor que and add them to Car Que. Also signal floors to stop at.
 void Car::load_car(queue<Passenger> *new_passengers) {
     cout << "Loading Passenger" << endl;
-    for (unsigned int c; c < new_passengers->size(); c++) {
+    for (unsigned int c = 0; c < new_passengers->size(); c++) {
         Passenger passenger = new_passengers->front();
         cout << "Passenger going to floor " << passenger.get_floor_to() << endl;
         passengers->push(passenger);
@@ -37,3 +37,4 @@ void Car::load_car(queue<Passenger> *new_passengers) {
         new_passengers->pop();
     }
 }
+
