@@ -12,6 +12,8 @@ Elevator_System::Elevator_System(int num_of_floors, int num_of_cars) {
     number_of_floors = num_of_floors;
     number_of_cars = num_of_cars;
     // Create list of cars
+    struct Request r = {6, "down"};
+    requests->push(r);
     // Create list of floors
 }
 
@@ -24,5 +26,6 @@ void Elevator_System::call_elevator(int floor, string direction, Passenger* pass
 
 // Access que of correct floor and direction, add passenger to that queue
 void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
-    
+
 }
+
