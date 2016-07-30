@@ -32,7 +32,7 @@ public:
 private:
     int number_of_floors;
     int number_of_cars;
-    
+	void add_request(int floor, string passenger);
     // Inplementing as vector because specific floors will have to be accessed.
     vector<Floor> floors;
     
@@ -50,7 +50,8 @@ private:
         int floor;
         string direction;
     };
-    
+	struct Request r = { 3, "down" };
+
     queue<Request> * requests = new queue<Request>;
     
     // Add passenger to FLOOR que

@@ -28,3 +28,38 @@ void Elevator_System::add_to_que(int floor, Passenger *passenger, string directi
 	floors[floor].add_to_queue(passenger, direction);
 
 }
+
+
+void Elevator_System::add_floor(int floor, string direction)
+{
+
+	if (direction == "up")
+	{
+		up_list->Add(floor, true);
+	}
+	else if (direction == "down")
+	{
+		down_list->Add(floor, true);
+
+	}
+	else
+	{
+		cout << "\n\nfloor error";
+	}
+
+}
+
+bool Elevator_System::car_in_route()
+{
+	//if //
+	return 0;
+}
+
+
+void Elevator_System::add_request(int floor, string passenger)
+{
+
+	struct Request temp_request = {floor, passenger};
+	requests->push(temp_request);
+	
+}
