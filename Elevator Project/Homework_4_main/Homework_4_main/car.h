@@ -43,7 +43,6 @@ private:
     
 protected:
     
-    void send_to_floor(int floor); //**
     
 public:
     Car();
@@ -56,7 +55,7 @@ public:
     //Take people from floor que and ad them to Car Que **
     void load_car(queue<Passenger>* new_passengers);
 
-
+	void send_to_floor(int floor); //**
 
 };
 #endif

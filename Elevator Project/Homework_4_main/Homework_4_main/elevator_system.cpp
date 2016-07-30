@@ -49,17 +49,58 @@ void Elevator_System::add_floor(int floor, string direction)
 
 }
 
-bool Elevator_System::car_in_route()
+bool Elevator_System::car_in_route() // iterates through all the cars, for each car, looks at floors each car has to go to (array)
 {
-	//if //
+	//
 	return 0;
 }
 
 
-void Elevator_System::add_request(int floor, string passenger)
+void Elevator_System::add_request(int floor, string direction)
 {
 
-	struct Request temp_request = {floor, passenger};
+	struct Request temp_request = {floor, direction};
 	requests->push(temp_request);
 	
+}
+
+Car * Elevator_System::pick_car()
+{
+	for (auto it = cars.begin(); it != cars.end(); ++it)
+
+		if (!(it->is_busy())) {
+			return &(*it);
+		}
+		else 
+		{
+			return NULL;
+		}
+}
+
+
+
+void Elevator_System::call_elevator(int floor, string direction, Passenger* passenger)
+{
+	add_to_que(floor, passenger, direction);
+	add_floor(floor, direction);
+
+	if (car_in_route())
+	{
+		return;
+	}
+	else
+	{
+		Car * temp_car = pick_car();
+		if (temp_car != NULL) //if car is found
+		{
+			temp_car->send_to_floor(floor);
+		}
+
+		else
+		{
+			add_request(floor, direction);
+		}
+		delete temp_car;
+
+	}
 }

@@ -32,7 +32,7 @@ public:
 private:
     int number_of_floors;
     int number_of_cars;
-	void add_request(int floor, string passenger);
+	void add_request(int floor, string direction);
     // Inplementing as vector because specific floors will have to be accessed.
     vector<Floor> floors;
     

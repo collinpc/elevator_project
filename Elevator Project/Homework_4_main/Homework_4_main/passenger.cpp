@@ -3,6 +3,8 @@
 
 // Constructors
 
+// create function to output information (time it took to do whatever)
+
 Passenger::Passenger() {
     cout << "creating new passenger" << endl;
     set_floor_to(2);

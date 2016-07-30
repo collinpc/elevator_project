@@ -37,3 +37,4 @@ void Car::load_car(queue<Passenger> *new_passengers) {
         new_passengers->pop();
     }
 }
+
