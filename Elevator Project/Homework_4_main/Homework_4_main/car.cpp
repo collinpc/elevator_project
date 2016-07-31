@@ -12,6 +12,11 @@ Car::Car() {
     current_floor = home_floor;
 }
 
+bool Car::is_busy() //not done
+{
+	return false;
+}
+
 void Car::send_to_floor(int floor) {
     // add return 0 if elevator is busy
     busy = true;

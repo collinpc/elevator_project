@@ -63,7 +63,8 @@ private:
     void add_floor(int floor, string direction);
     
     // Check to see if a car is alreay going to pass the floor **
-    bool car_in_route();
+    bool car_in_route(int floor, string direction);
+
     
     // Pick a car that isn't busy **
     // If no car is picked, add request to the request queue
