@@ -16,11 +16,18 @@ int main()
 {
     
     Passenger * pas1 = new Passenger();
+	pas1->passenger_info();
     
-    queue<Passenger>* passengers = new queue<Passenger>;
+    //queue<Passenger>* passengers = new queue<Passenger>;
     
-    passengers->push(*pas1);
+    //passengers->push(*pas1);
     
-    Car * car1 = new Car();
-    car1->load_car(passengers);
+    //Car * car1 = new Car();
+    //car1->load_car(passengers);
+
+	//cout << Passenger::passenger_info();
+
+
+
+	system("PAUSE");
 }

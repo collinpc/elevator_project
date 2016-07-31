@@ -15,11 +15,9 @@ Passenger::Passenger() {
 }
 
 // Functions
-void Passenger::calculate_trip_time() {
-    wait_total = exit_time - call_time;
-}
 
-int Passenger::calculate_arrival_weight_time() {
+
+int Passenger::calculate_arrival_wait_time() {
     int time = arrive_time - call_time;
     return time;
 }
@@ -30,4 +28,16 @@ void Passenger::set_floor_from(int floor) {
 
 void Passenger::set_floor_to(int floor) {
     floor_to = floor;
+}
+
+void Passenger::passenger_info()
+{
+	trip_time = Passenger::calculate_trip_time();
+	int arrival_time = Passenger::calculate_arrival_wait_time();
+
+	cout << "Passenger went from " << floor_from << " to floor " << floor_to;
+	cout << "\nTotal time for elevator to arrive " << arrival_time << " seconds";
+	cout << "\nTotal time spent waiting and traveling in elevator " << trip_time << " seconds";  
+
+
 }

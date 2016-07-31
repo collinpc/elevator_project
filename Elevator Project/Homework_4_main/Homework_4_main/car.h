@@ -29,7 +29,7 @@ private:
     
     // These calls have priority and hold the direction which the passenger whos has
     // been waiting the longest needs to go **
-    string floors_to_stop_at[number_of_floors];
+   // string floors_to_stop_at[number_of_floors]; put this in public, idk 
     
     int busy;
     int const home_floor = 3; // home floor
@@ -48,14 +48,18 @@ public:
     Car();
     
     bool is_busy();
-    
-    void move();
+	string floors_to_stop_at[number_of_floors];
+  //  void move();
     
     
     //Take people from floor que and ad them to Car Que **
     void load_car(queue<Passenger>* new_passengers);
 
 	void send_to_floor(int floor); //**
+
+	string get_direction();
+	int get_lowest_floor();
+	int get_highest_floor();
 
 };
 #endif
