@@ -17,7 +17,7 @@ public:
 	void add_to_queue(Passenger *passenger, string direction);
 
 protected:
-    queue<Passenger>* up_queue = new queue<Passenger>;
+    queue<Passenger>* up_queue = new queue<Passenger>; //* somhow make these friends
     queue<Passenger>* down_queue = new queue<Passenger>;
 };
 #endif

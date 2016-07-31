@@ -38,3 +38,25 @@ void Car::load_car(queue<Passenger> *new_passengers) {
     }
 }
 
+// All of this code is questionable as I am very inebriated
+void Car::move() {
+    if (direction == "down") {
+        if (time_to_next_floor == 0) {
+            current_floor--;
+            //Check floor queue
+        }
+    } else if (direction == "up") {
+        if (time_to_next_floor == 0) {
+            current_floor++;
+            //Check floor queue
+        }
+    }
+    else {
+        //your on the right floor
+    }
+}
+
+string Car::get_direction() {
+    return direction;
+}
+

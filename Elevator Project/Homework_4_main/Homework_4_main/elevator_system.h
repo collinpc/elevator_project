@@ -20,6 +20,12 @@ using namespace std;
 //Controls interactions between the Floors and Cars
 class Elevator_System
 {
+protected:
+    // Cars check these to see if they can pick up a passengers traveling in the same direction,
+    // similar to a real elevator.
+    BinarySearchTree<int, bool>*up_list = new BinarySearchTree<int, bool>; // up binary search tree
+    BinarySearchTree<int, bool>*down_list = new BinarySearchTree<int, bool>; // down binary search tree
+    
 public:
     Elevator_System(int number_of_floors, int number_of_cars);
     
@@ -39,10 +45,6 @@ private:
     // Implementing Cars as single linked list (front list) because there is no need to access a specific car
     forward_list<Car> cars;
     
-    // Cars check these to see if they can pick up a passengers traveling in the same direction,
-    // similar to a real elevator.
-    BinarySearchTree<int, bool>*up_list = new BinarySearchTree<int, bool>; // up binary search tree
-    BinarySearchTree<int, bool>*down_list = new BinarySearchTree<int, bool>; // down binary search tree
     
     // To keep program modular, we will not keep a que of passengers, as that's the floors job
     // instead there the elevator will have a queue of requests for particlular floors as a real eleators do

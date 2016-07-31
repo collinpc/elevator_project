@@ -8,6 +8,7 @@
 #include <queue>
 #include "passenger.h"
 #include <map>
+//#include "elevator_system.h"
 #include <queue>
 //#include "elevator_system.h"
 #include <string>
@@ -41,16 +42,16 @@ private:
     
     queue<Passenger>* passengers = new queue<Passenger>;
     
-protected:
-    
     
 public:
     Car();
-    
+
     bool is_busy();
     
     void move();
     
+    
+    int get_lowest_floor();
     
     //Take people from floor que and ad them to Car Que **
     void load_car(queue<Passenger>* new_passengers);
