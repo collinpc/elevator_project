@@ -42,7 +42,6 @@ void Car::load_car(queue<Passenger> *new_passengers) {
         new_passengers->pop();
     }
 }
-
 // All of this code is questionable as I am very inebriated
 void Car::move() {
     if (direction == "down") {
@@ -65,3 +64,26 @@ string Car::get_direction() {
     return direction;
 }
 
+int Car::get_lowest_floor()
+{
+	for (unsigned int c = 0; c < number_of_floors; c++)
+	{
+		if (floors_to_stop_at[c] != "null")
+		{
+			return c;
+		}
+	}
+	return -99;
+}
+
+int Car::get_highest_floor()
+{
+	for (unsigned int c = number_of_floors; c<0; c--)
+	{
+		if (floors_to_stop_at[c] != "null")
+		{
+			return c;
+		}
+	}
+	return -99;
+}

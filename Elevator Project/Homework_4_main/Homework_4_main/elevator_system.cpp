@@ -19,7 +19,6 @@ Elevator_System::Elevator_System(int num_of_floors, int num_of_cars) {
 // Access que of correct floor and direction, add passenger to that queue
 void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
 	floors[floor].add_to_queue(passenger, direction);
-
 }
 
 

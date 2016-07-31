@@ -48,10 +48,7 @@ public:
 
     bool is_busy();
 	string floors_to_stop_at[number_of_floors];
-  //  void move();
-    
-    
-    int get_lowest_floor();
+    void move();
     
     //Take people from floor que and ad them to Car Que **
     void load_car(queue<Passenger>* new_passengers);
