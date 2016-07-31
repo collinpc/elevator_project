@@ -12,6 +12,11 @@ Car::Car() {
     current_floor = home_floor;
 }
 
+bool Car::is_busy() //not done
+{
+	return false;
+}
+
 void Car::send_to_floor(int floor) {
     // add return 0 if elevator is busy
     busy = true;
@@ -37,4 +42,48 @@ void Car::load_car(queue<Passenger> *new_passengers) {
         new_passengers->pop();
     }
 }
+// All of this code is questionable as I am very inebriated
+void Car::move() {
+    if (direction == "down") {
+        if (time_to_next_floor == 0) {
+            current_floor--;
+            //Check floor queue
+        }
+    } else if (direction == "up") {
+        if (time_to_next_floor == 0) {
+            current_floor++;
+            //Check floor queue
+        }
+    }
+    else {
+        //your on the right floor
+    }
+}
 
+string Car::get_direction() {
+    return direction;
+}
+
+int Car::get_lowest_floor()
+{
+	for (unsigned int c = 0; c < number_of_floors; c++)
+	{
+		if (floors_to_stop_at[c] != "null")
+		{
+			return c;
+		}
+	}
+	return -99;
+}
+
+int Car::get_highest_floor()
+{
+	for (unsigned int c = number_of_floors; c<0; c--)
+	{
+		if (floors_to_stop_at[c] != "null")
+		{
+			return c;
+		}
+	}
+	return -99;
+}

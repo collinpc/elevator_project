@@ -1,3 +1,3 @@
-﻿  car.cpp
-  Homework_4_main.vcxproj -> C:\Homework 4\Elevator Project\Homework_4_main\Debug\Homework_4_main.exe
-  Homework_4_main.vcxproj -> C:\Homework 4\Elevator Project\Homework_4_main\Debug\Homework_4_main.pdb (Full PDB)
+﻿  simulator.cpp
+c:\users\colli\source\repos\elevator_project\elevator project\homework_4_main\homework_4_main\simulator.cpp(8): warning C4552: '+': operator has no effect; expected operator with side-effect
+  Homework_4_main.vcxproj -> C:\Users\colli\Source\Repos\elevator_project\Elevator Project\Homework_4_main\Debug\Homework_4_main.exe

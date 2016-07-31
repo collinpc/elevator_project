@@ -12,21 +12,13 @@ Elevator_System::Elevator_System(int num_of_floors, int num_of_cars) {
     number_of_floors = num_of_floors;
     number_of_cars = num_of_cars;
     // Create list of cars
+    struct Request r = {6, "down"};
+    requests->push(r);
     // Create list of floors
 }
-
-void Elevator_System::call_elevator(int floor, string direction, Passenger* passenger) {
-    
-    // Add passenger to floor queue
-    add_to_que(floor, passenger, direction);
-    
-}
-
 // Access que of correct floor and direction, add passenger to that queue
 void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
-
 	floors[floor].add_to_queue(passenger, direction);
-
 }
 
 
@@ -49,11 +41,29 @@ void Elevator_System::add_floor(int floor, string direction)
 
 }
 
-bool Elevator_System::car_in_route() // iterates through all the cars, for each car, looks at floors each car has to go to (array)
+bool Elevator_System::car_in_route(int floor, string direction) // iterates through all the cars, for each car, looks at floors each car has to go to (array) wip, check if same direction as front of stack (request->front) 
 {
-	//
-	return 0;
+	for (auto it = cars.begin(); it != cars.end(); ++it)
+	{
+
+		if (it->get_direction() == direction && direction == "down")
+		{
+			if (it->get_lowest_floor() <= floor)
+			{
+				return true;
+			}
+
+		}
+
+		if (it->get_direction() == direction && direction == "up")
+			if (it->get_highest_floor() >= floor)
+			{
+				return true;
+			}
+	}
+	return false;
 }
+
 
 
 void Elevator_System::add_request(int floor, string direction)
@@ -75,6 +85,7 @@ Car * Elevator_System::pick_car()
 		{
 			return NULL;
 		}
+    return NULL;
 }
 
 
@@ -84,7 +95,7 @@ void Elevator_System::call_elevator(int floor, string direction, Passenger* pass
 	add_to_que(floor, passenger, direction);
 	add_floor(floor, direction);
 
-	if (car_in_route())
+	if (car_in_route(floor, direction))
 	{
 		return;
 	}

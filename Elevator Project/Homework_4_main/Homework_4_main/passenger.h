@@ -10,7 +10,7 @@ using namespace std;
 
 class Passenger
 {
-private:
+protected:  //Made protected so can be accessed by simulator class
 
 	int floor_from; 
 	int floor_to;
@@ -20,7 +20,8 @@ private:
 	int arrive_time; //when the elevator gets to the person
 	int call_time;
 	int exit_time;
-	int calculate_arrival_weight_time();
+	int trip_time;
+	int calculate_arrival_wait_time();
 
 
 
@@ -30,6 +31,7 @@ public:
     //Constructors
     
     Passenger();
+
     
     
 	//setters
@@ -70,8 +72,16 @@ public:
         return floor_to;
     }
     
-    void calculate_trip_time();
+	int get_floor_from() {
+		return floor_from;
+	}
+	int calculate_trip_time()
+	{
+		trip_time = exit_time - call_time;
+		return trip_time;
+	}
 
+	void passenger_info();
 	
 
 };
