@@ -18,8 +18,7 @@ int main()
 {
     
     Passenger * pas1 = new Passenger();
-	//
-	//Simulator::handle_data(*pas1);
+
 
 
     queue<Passenger>* passengers = new queue<Passenger>;

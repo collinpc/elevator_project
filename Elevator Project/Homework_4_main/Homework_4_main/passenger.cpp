@@ -36,7 +36,6 @@ void Passenger::passenger_info()
 {
 	trip_time = Passenger::calculate_trip_time();
 	int arrival_time = Passenger::calculate_arrival_wait_time();
-	
 
 	cout << "Passenger went from " << floor_from << " to floor " << floor_to;
 	cout << "\nTotal time for elevator to arrive " << arrival_time << " seconds";
