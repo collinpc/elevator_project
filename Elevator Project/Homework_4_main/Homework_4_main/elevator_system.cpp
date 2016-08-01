@@ -7,14 +7,30 @@
 //
 #include "elevator_system.h"
 #include <stdio.h>
+#include "car.h"
+#include "floor.h"
 
 Elevator_System::Elevator_System(int num_of_floors, int num_of_cars) {
     number_of_floors = num_of_floors;
     number_of_cars = num_of_cars;
     // Create list of cars
-    struct Request r = {6, "down"};
-    requests->push(r);
+    for (int c = 0; c < num_of_cars; c++) {
+        cars.push_front(new Car(this));
+    }
+    for (int c = 0; c < num_of_floors; c++) {
+        floors.push_back(Floor());
+    }
     // Create list of floors
+    
+    
+}
+
+void Elevator_System::tick() {
+    for (auto it = cars.begin(); it != cars.end(); ++it)
+    {
+        (*it)->move();
+        (*it)->stats();
+    }
 }
 // Access que of correct floor and direction, add passenger to that queue
 void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
@@ -36,7 +52,7 @@ void Elevator_System::add_floor(int floor, string direction)
 	}
 	else
 	{
-		cout << "\n\nfloor error";
+		//cout << "\n\nfloor error";
 	}
 
 }
@@ -45,18 +61,17 @@ bool Elevator_System::car_in_route(int floor, string direction) // iterates thro
 {
 	for (auto it = cars.begin(); it != cars.end(); ++it)
 	{
-
-		if (it->get_direction() == direction && direction == "down")
+		if ((*it)->get_direction() == direction && direction == "down")
 		{
-			if (it->get_lowest_floor() <= floor)
+			if ((*it)->get_lowest_floor() <= floor)
 			{
 				return true;
 			}
 
 		}
 
-		if (it->get_direction() == direction && direction == "up")
-			if (it->get_highest_floor() >= floor)
+		if ((*it)->get_direction() == direction && direction == "up")
+			if ((*it)->get_highest_floor() >= floor)
 			{
 				return true;
 			}
@@ -74,24 +89,30 @@ void Elevator_System::add_request(int floor, string direction)
 	
 }
 
-Car * Elevator_System::pick_car()
+Elevator_System::Car * Elevator_System::pick_car()
 {
-	for (auto it = cars.begin(); it != cars.end(); ++it)
-
-		if (!(it->is_busy())) {
-			return &(*it);
+    for (auto it = cars.begin(); it != cars.end(); ++it) {
+        
+		if (!((*it)->is_busy())) {
+			return (*it);
 		}
 		else 
 		{
 			return NULL;
 		}
-    return NULL;
+    }
+        return NULL;
 }
 
 
 
-void Elevator_System::call_elevator(int floor, string direction, Passenger* passenger)
+void Elevator_System::call_elevator(Passenger* passenger)
 {
+    string direction = "up";
+    int floor = passenger->get_floor_from();
+    if (passenger->get_floor_from() > passenger->get_floor_to()) {
+        direction = "down";
+    }
 	add_to_que(floor, passenger, direction);
 	add_floor(floor, direction);
 
@@ -102,9 +123,10 @@ void Elevator_System::call_elevator(int floor, string direction, Passenger* pass
 	else
 	{
 		Car * temp_car = pick_car();
+        
 		if (temp_car != NULL) //if car is found
 		{
-			temp_car->send_to_floor(floor);
+			temp_car->send_to_floor(floor, direction);
 		}
 
 		else

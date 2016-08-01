@@ -14,8 +14,6 @@ protected:  //Made protected so can be accessed by simulator class
 
 	int floor_from; 
 	int floor_to;
-	int wait_total; 
-	int wait_arrival;
 
 	int arrive_time; //when the elevator gets to the person
 	int call_time;

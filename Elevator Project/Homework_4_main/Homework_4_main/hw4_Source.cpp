@@ -16,36 +16,35 @@ using namespace std;
 
 int main()
 {
+    Elevator_System * sys1 = new Elevator_System(12, 1);
+    Passenger * pass1 = new Passenger();
+    sys1->call_elevator(pass1);
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
+    sys1->tick();
     
-    Passenger * pas1 = new Passenger();
-
-
-
-    queue<Passenger>* passengers = new queue<Passenger>;
     
-    passengers->push(*pas1);
-	Simulator passenger1;
-	
-    Car * car1 = new Car();
-    car1->load_car(passengers);
-
-	passenger1.handle_data(*pas1);
-	
-
-
-	Passenger * pas2 = new Passenger();
-	//
-	//Simulator::handle_data(*pas1);
-
-
-	queue<Passenger>* passengers2 = new queue<Passenger>;
-
-	passengers->push(*pas2);
-	Simulator passenger2;
-
-	Car * car12 = new Car();
-	car12->load_car(passengers2);
-	passenger1.handle_data(*pas2);
-
 	system("PAUSE");
 }

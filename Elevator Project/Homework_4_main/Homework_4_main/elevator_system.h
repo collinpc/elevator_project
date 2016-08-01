@@ -6,10 +6,11 @@
 // and the elevator system can assign it a floor to go to if there is a passenger.
 
 #include "bst.h"//
-#include "car.h"
-#include "floor.h"
+//#include "car.h"
+//#include "floor.h"
 #include <string>
 #include <vector>
+#include "passenger.h"
 #include <forward_list>
 #include <queue>
 #ifndef ELEVATOR_SYSTEM
@@ -27,13 +28,17 @@ protected:
     BinarySearchTree<int, bool>*down_list = new BinarySearchTree<int, bool>; // down binary search tree
     
 public:
+    class Car;
+    class Floor;
     Elevator_System(int number_of_floors, int number_of_cars);
     
     // See if any cars can services the requsts in the queue ... Possiblt make protected **
     void service_requests();
     
+    void tick();
+    
     // Address a call.. Possibly make protected
-    void call_elevator(int floor, string direction, Passenger* passenger); //**
+    void call_elevator(Passenger* passenger); //**
 
 private:
     int number_of_floors;
@@ -43,7 +48,7 @@ private:
     vector<Floor> floors;
     
     // Implementing Cars as single linked list (front list) because there is no need to access a specific car
-    forward_list<Car> cars;
+    forward_list<Car *> cars;
     
     
     // To keep program modular, we will not keep a que of passengers, as that's the floors job

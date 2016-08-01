@@ -2,12 +2,12 @@
 #include <iostream>
 using namespace std;
 
+Elevator_System::Floor::Floor() {
+    
+}
 
-
-void Floor::add_to_queue(Passenger *passenger, string direction)
+void Elevator_System::Floor::add_to_queue(Passenger *passenger, string direction)
 {
-	
-
 	if (direction == "down")
 	{
 		down_queue->push(*passenger);
