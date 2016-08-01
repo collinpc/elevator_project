@@ -3,41 +3,49 @@
 #include "bst.h"
 #include "floor.h"
 #include <queue>
-#include <vector>
 #include "car.h"
 #include <cstdlib>
 #include <string>
+#include "simulator.h"
+
 
 #define NUM_OF_FLOORS 12
 
 using namespace std;
 
-void get_some(vector<Floor>* floor_ptr, int floor) {
-    Floor one = (*floor_ptr)[2];
-}
 
 int main()
 {
+    
     Passenger * pas1 = new Passenger();
-	pas1->passenger_info();
-    
-//    vector<Floor>* floors = new vector<Floor>(10);
-//    
-//    vector<Floor>* floor_ptr = floors;
-//    
-//    floors[3].add_to_que();
-    
-    
-    //queue<Passenger>* passengers = new queue<Passenger>;
-    
-    //passengers->push(*pas1);
-    
-    //Car * car1 = new Car();
-    //car1->load_car(passengers);
-
-	//cout << Passenger::passenger_info();
 
 
 
-	//system("PAUSE");
+    queue<Passenger>* passengers = new queue<Passenger>;
+    
+    passengers->push(*pas1);
+	Simulator passenger1;
+	
+    Car * car1 = new Car();
+    car1->load_car(passengers);
+
+	passenger1.handle_data(*pas1);
+	
+
+
+	Passenger * pas2 = new Passenger();
+	//
+	//Simulator::handle_data(*pas1);
+
+
+	queue<Passenger>* passengers2 = new queue<Passenger>;
+
+	passengers->push(*pas2);
+	Simulator passenger2;
+
+	Car * car12 = new Car();
+	car12->load_car(passengers2);
+	passenger1.handle_data(*pas2);
+
+	system("PAUSE");
 }

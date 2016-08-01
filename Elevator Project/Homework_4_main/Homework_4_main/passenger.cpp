@@ -1,5 +1,6 @@
 #include "passenger.h"
 #include <iostream>
+#include "simulator.h"
 
 // Constructors
 
@@ -7,11 +8,12 @@
 
 Passenger::Passenger() {
     cout << "creating new passenger" << endl;
-    set_floor_to(2);
+    set_floor_from(2);
     set_floor_to(3);
     set_call_time(2);
     set_arival_time(4);
     set_exit_time(10);
+	
 }
 
 // Functions

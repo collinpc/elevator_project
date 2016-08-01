@@ -27,7 +27,6 @@ void Elevator_System::add_floor(int floor, string direction)
 
 	if (direction == "up")
 	{
-        cars.front();
 		up_list->Add(floor, true);
 	}
 	else if (direction == "down")
@@ -105,7 +104,7 @@ void Elevator_System::call_elevator(int floor, string direction, Passenger* pass
 		Car * temp_car = pick_car();
 		if (temp_car != NULL) //if car is found
 		{
-			temp_car->send_to_floor(floor, direction);
+			temp_car->send_to_floor(floor);
 		}
 
 		else

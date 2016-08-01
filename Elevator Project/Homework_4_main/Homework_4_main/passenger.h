@@ -10,7 +10,7 @@ using namespace std;
 
 class Passenger
 {
-private:
+protected:  //Made protected so can be accessed by simulator class
 
 	int floor_from; 
 	int floor_to;

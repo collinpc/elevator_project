@@ -6,7 +6,6 @@
 #define CAR
 #include <iostream>
 #include <queue>
-#include "floor.h"
 #include "passenger.h"
 #include <map>
 //#include "elevator_system.h"
@@ -14,19 +13,12 @@
 //#include "elevator_system.h"
 #include <string>
 #include "bst.h"
-#include <vector>
-
 using namespace std;
+
 
 
 class Car
 {
-
-protected:
-    // Cars check these to see if they can pick up a passengers traveling in the same direction,
-    // similar to a real elevator.
-    static BinarySearchTree<int, bool> up_list; // up binary search tree
-    static BinarySearchTree<int, bool> down_list; // down binary search tree
     
 private:
 
@@ -50,31 +42,22 @@ private:
     
     queue<Passenger>* passengers = new queue<Passenger>;
     
-    bool check_for_passengers(int floor, string direction);
-    
     
 public:
     Car();
 
-    Car(vector<Floor> * floors);
-    
     bool is_busy();
 	string floors_to_stop_at[number_of_floors];
     void move();
     
-    
-    vector<Floor> * floors_ptr = NULL;
-    
     //Take people from floor que and ad them to Car Que **
     void load_car(queue<Passenger>* new_passengers);
 
-	void send_to_floor(int floor, string intended_direction); //**
+	void send_to_floor(int floor); //**
 
 	string get_direction();
 	int get_lowest_floor();
 	int get_highest_floor();
-    
-    virtual ~Car();
 
 };
 #endif

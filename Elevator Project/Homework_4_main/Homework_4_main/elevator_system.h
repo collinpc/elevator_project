@@ -5,7 +5,7 @@
 // When a car is finished serving floors it is assigned or picking up people along the way, it will not be busy
 // and the elevator system can assign it a floor to go to if there is a passenger.
 
-#include "bst.h"
+#include "bst.h"//
 #include "car.h"
 #include "floor.h"
 #include <string>
@@ -21,20 +21,16 @@ using namespace std;
 class Elevator_System
 {
 protected:
-    vector<Floor> floors;
     // Cars check these to see if they can pick up a passengers traveling in the same direction,
     // similar to a real elevator.
-    BinarySearchTree<int, bool>* up_list = new BinarySearchTree<int, bool>; // up binary search tree
-    BinarySearchTree<int, bool>* down_list = new BinarySearchTree<int, bool>; // down binary search tree
-    
+    BinarySearchTree<int, bool>*up_list = new BinarySearchTree<int, bool>; // up binary search tree
+    BinarySearchTree<int, bool>*down_list = new BinarySearchTree<int, bool>; // down binary search tree
     
 public:
     Elevator_System(int number_of_floors, int number_of_cars);
     
     // See if any cars can services the requsts in the queue ... Possiblt make protected **
     void service_requests();
-    
-    bool check_floor(int floor);
     
     // Address a call.. Possibly make protected
     void call_elevator(int floor, string direction, Passenger* passenger); //**
@@ -44,6 +40,7 @@ private:
     int number_of_cars;
 	void add_request(int floor, string direction);
     // Inplementing as vector because specific floors will have to be accessed.
+    vector<Floor> floors;
     
     // Implementing Cars as single linked list (front list) because there is no need to access a specific car
     forward_list<Car> cars;
@@ -72,7 +69,5 @@ private:
     // Pick a car that isn't busy **
     // If no car is picked, add request to the request queue
     Car * pick_car();
-    
-    virtual ~Elevator_System();
 };
 #endif
