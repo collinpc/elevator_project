@@ -2,6 +2,7 @@
 
 #include <queue>
 #include "passenger.h"
+#include "elevator_system.h"
 #include <string>
 // Controls
 #ifndef FLOOR
@@ -9,8 +10,9 @@
 
 
 //Controls interactions between the Floors and Cars
-class Floor
+class Elevator_System::Floor
 {
+    friend class Elevator_System::Car;
 public:
     Floor();
     Floor(int number);

@@ -14,8 +14,6 @@ protected:  //Made protected so can be accessed by simulator class
 
 	int floor_from; 
 	int floor_to;
-	int wait_total; 
-	int wait_arrival;
 
 	int arrive_time; //when the elevator gets to the person
 	int call_time;
@@ -27,12 +25,13 @@ protected:  //Made protected so can be accessed by simulator class
 
 
 public:
+    ~Passenger();
 
     //Constructors
     
     Passenger();
 
-    
+	Passenger(int from, int to);
     
 	//setters
 
@@ -57,17 +56,8 @@ public:
     void set_floor_to(int floor);
 
 
-	//Getters
+	//Getter
 
-	int get_wait_total()
-	{
-		return wait_total;
-	}
-
-	int get_wait_arrival()
-	{
-		return wait_arrival;
-	}
     int get_floor_to() {
         return floor_to;
     }

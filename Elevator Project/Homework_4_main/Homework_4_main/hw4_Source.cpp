@@ -16,36 +16,8 @@ using namespace std;
 
 int main()
 {
-    
-    Passenger * pas1 = new Passenger();
-
-
-
-    queue<Passenger>* passengers = new queue<Passenger>;
-    
-    passengers->push(*pas1);
-	Simulator passenger1;
+	Simulator * sim1 = new Simulator(1,12);
 	
-    Car * car1 = new Car();
-    car1->load_car(passengers);
-
-	passenger1.handle_data(*pas1);
-	
-
-
-	Passenger * pas2 = new Passenger();
-	//
-	//Simulator::handle_data(*pas1);
-
-
-	queue<Passenger>* passengers2 = new queue<Passenger>;
-
-	passengers->push(*pas2);
-	Simulator passenger2;
-
-	Car * car12 = new Car();
-	car12->load_car(passengers2);
-	passenger1.handle_data(*pas2);
-
+	sim1->run_simulation(12);
 	system("PAUSE");
 }

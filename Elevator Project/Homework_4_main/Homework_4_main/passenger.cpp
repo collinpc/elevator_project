@@ -9,7 +9,7 @@
 Passenger::Passenger() {
     cout << "creating new passenger" << endl;
     set_floor_from(2);
-    set_floor_to(3);
+    set_floor_to(1);
     set_call_time(2);
     set_arival_time(4);
     set_exit_time(10);
@@ -18,6 +18,9 @@ Passenger::Passenger() {
 
 // Functions
 
+Passenger::~Passenger() {
+    cout << "Passenger went from floor " << this->get_floor_from() << " to " << this->get_floor_to() << endl;;
+}
 
 int Passenger::calculate_arrival_wait_time() {
     int time = arrive_time - call_time;

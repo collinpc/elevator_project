@@ -6,6 +6,7 @@
 #include "passenger.h"
 #include <iostream>
 #include <vector>
+#include "car.h"
 
 using namespace std;
 
@@ -14,19 +15,27 @@ class Simulator : private Passenger //inherited class to access protected functi
 {
 private:
 
+	Elevator_System * elevator_system_ptr;
+	int num_cars = 0;
+	int num_floors = 0;
+	int passenger_num = 0;
 	
 	int total_passengers = 0;
 	vector<int> trip_times; //holds the trip time for each passenger
 	vector<int> arrival_times; //holds how long the elevator took to arrive for each passenger
-
+	int total_times = 0;
+	int average_time = 0;
 
 public:
 
-
+	Simulator(int cars, int people);//# cars, # people, # floors);
+	
+		//save the # passengers
 
 	void handle_data(Passenger passenger);
-
-
+	void print_data(Passenger passenger);
+	void run_simulation(int time);
+	int get_interval(int time);
 
 
 
