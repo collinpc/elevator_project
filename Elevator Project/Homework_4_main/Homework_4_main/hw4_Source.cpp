@@ -3,6 +3,7 @@
 #include "bst.h"
 #include "floor.h"
 #include <queue>
+#include <vector>
 #include "car.h"
 #include <cstdlib>
 #include <string>
@@ -11,12 +12,21 @@
 
 using namespace std;
 
+void get_some(vector<Floor>* floor_ptr, int floor) {
+    Floor one = (*floor_ptr)[2];
+}
 
 int main()
 {
-    
     Passenger * pas1 = new Passenger();
 	pas1->passenger_info();
+    
+//    vector<Floor>* floors = new vector<Floor>(10);
+//    
+//    vector<Floor>* floor_ptr = floors;
+//    
+//    floors[3].add_to_que();
+    
     
     //queue<Passenger>* passengers = new queue<Passenger>;
     
@@ -29,5 +39,5 @@ int main()
 
 
 
-	system("PAUSE");
+	//system("PAUSE");
 }

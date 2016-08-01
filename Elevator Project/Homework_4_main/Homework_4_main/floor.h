@@ -15,8 +15,10 @@ public:
     Floor();
     Floor(int number);
 	void add_to_queue(Passenger *passenger, string direction);
+    queue<Passenger>* get_passengers(string direction);
+    //friend class Car;
 
-protected:
+private:
     queue<Passenger>* up_queue = new queue<Passenger>; //* somhow make these friends
     queue<Passenger>* down_queue = new queue<Passenger>;
 };
