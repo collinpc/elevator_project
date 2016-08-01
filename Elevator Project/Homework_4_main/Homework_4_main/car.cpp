@@ -18,11 +18,12 @@ Elevator_System::Car::Car(Elevator_System * Elevator_System_ptr) {
     for (int c = 0; c < number_of_floors; c++) {
         floors_to_stop_at[c] = "Null";
     }
+    busy = 0;
 }
 
 bool Elevator_System::Car::is_busy() //not done
 {
-	return false;
+	return busy;
 }
 
 void Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
@@ -65,6 +66,11 @@ void Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
         }
         new_passengers->pop();
         busy = 1;
+        if (direction == "up")
+            elevator_system_ptr->up_list->Remove(current_floor);
+        else if (direction == "down") {
+            elevator_system_ptr->up_list->Remove(current_floor);
+        }
     }
 }
 
@@ -150,8 +156,12 @@ int Elevator_System::Car::get_lowest_floor()
 
 int Elevator_System::Car::get_highest_floor()
 {
-	for (int c = number_of_floors; c < 0; c--)
+    cout << "GOT THIS FAR";
+    
+	for (int c = 12; c < 0; c--)
 	{
+        cout << "Stop at: " << floors_to_stop_at[c] << endl;
+        
 		if (floors_to_stop_at[c] != "Null")
 		{
 			return c;
@@ -162,12 +172,10 @@ int Elevator_System::Car::get_highest_floor()
 
 // Removes passengers who are on the correct floor
 void Elevator_System::Car::unload_car() {
-    cout << "unloading Passanger" << endl;
     
     forward_list<Passenger>* passengers1 = new forward_list<Passenger>;
     
     for (auto it = passengers->begin(); it != passengers->end(); ++it) {
-        cout << "entered";
         time_to_next_floor = time_to_next_floor + pass_load_time;
         if ((*it).get_floor_to() == current_floor) {
             it->~Passenger();
