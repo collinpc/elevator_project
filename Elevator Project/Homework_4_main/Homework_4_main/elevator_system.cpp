@@ -29,7 +29,7 @@ void Elevator_System::tick() {
     for (auto it = cars.begin(); it != cars.end(); ++it)
     {
         (*it)->move();
-        (*it)->stats();
+        //(*it)->stats();
     }
 }
 // Access que of correct floor and direction, add passenger to that queue
@@ -126,14 +126,14 @@ void Elevator_System::call_elevator(Passenger* passenger)
         
 		if (temp_car != NULL) //if car is found
 		{
-			temp_car->send_to_floor(floor, direction);
+			temp_car->send_to_floor(passenger->get_floor_from(), direction);
 		}
 
 		else
 		{
 			add_request(floor, direction);
 		}
-		delete temp_car;
+		//delete temp_car;
 
 	}
 }

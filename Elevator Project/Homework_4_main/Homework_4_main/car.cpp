@@ -70,11 +70,6 @@ void Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
 
 
 void Elevator_System::Car::move() {
-    if (busy == 0 && current_floor != home_floor) {
-        send_home();
-        return;
-    }
-    
     if (direction == "down") {
         if (time_to_next_floor == 0) {
             current_floor--;
@@ -109,6 +104,9 @@ string Elevator_System::Car::get_direction() {
 
 bool Elevator_System::Car::check_floor() {
 
+    if (current_floor == home_floor)
+        direction = "home";
+    
     cout << floors_to_stop_at[current_floor] << endl;
     if ((floors_to_stop_at[current_floor] == "down") && (current_floor == change_direction_floor)) {
         cout << "HERE5" << endl;
@@ -191,11 +189,11 @@ void Elevator_System::Car::handle_floor_load_unload() {
     }
     else if (direction == "up") {
         busy = 1;
-        
         load_car(elevator_system_ptr->floors[current_floor].up_queue);
     }
     if (passengers->empty()) {
         busy = 0;
+        send_home();
     }
 }
 
@@ -204,8 +202,9 @@ void Elevator_System::Car::send_home() {
         direction = "down";
     } else if (current_floor < home_floor) {
         direction = "up";
-    } else {
-        
+    }
+    else {
+        direction = "home";
     }
 }
 

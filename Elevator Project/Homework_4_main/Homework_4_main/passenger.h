@@ -25,6 +25,7 @@ protected:  //Made protected so can be accessed by simulator class
 
 
 public:
+    ~Passenger();
 
     //Constructors
     
@@ -55,17 +56,8 @@ public:
     void set_floor_to(int floor);
 
 
-	//Getters
+	//Getter
 
-	int get_wait_total()
-	{
-		return wait_total;
-	}
-
-	int get_wait_arrival()
-	{
-		return wait_arrival;
-	}
     int get_floor_to() {
         return floor_to;
     }
