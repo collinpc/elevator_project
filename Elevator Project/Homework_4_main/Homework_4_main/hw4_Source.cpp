@@ -45,6 +45,4 @@ int main()
     sys1->tick();
     sys1->tick();
     
-    
-	system("PAUSE");
 }
