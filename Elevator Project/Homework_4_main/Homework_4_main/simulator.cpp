@@ -16,7 +16,7 @@ Simulator::Simulator(int cars, int people)
 
 void Simulator::handle_data(Passenger passenger)
 {
-	
+	cout << "Average Time---------------------------------------------------------------";
 	
 	total_passengers++; // adds 1 to the number of passengers served
 	
@@ -25,10 +25,10 @@ void Simulator::handle_data(Passenger passenger)
 
 	total_times = calculate_trip_time() + total_times;
 	average_time = total_times / total_passengers; //calculates the average trip time	
-
+	
 }
 
-void Simulator::print_data(Passenger passenger)
+void Simulator::print_data()
 {
 	passenger_info();
 	cout << "\n\nTotal passengers " << total_passengers << endl;

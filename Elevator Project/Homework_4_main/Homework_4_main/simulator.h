@@ -22,7 +22,7 @@ public:
 		//save the # passengers
 
 	void handle_data(Passenger passenger);
-	void print_data(Passenger passenger);
+	void print_data();
 	void run_simulation(int time);
 	int get_interval(int time);
 

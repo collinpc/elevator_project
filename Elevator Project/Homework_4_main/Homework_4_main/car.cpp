@@ -175,6 +175,7 @@ void Simulator::Elevator_System::Car::unload_car() {
     for (auto it = passengers->begin(); it != passengers->end(); ++it) {
         time_to_next_floor = time_to_next_floor + pass_load_time;
         if ((*it).get_floor_to() == current_floor) {
+
             Simulator_ptr->handle_data((*it));
             it->~Passenger();
         } else {
