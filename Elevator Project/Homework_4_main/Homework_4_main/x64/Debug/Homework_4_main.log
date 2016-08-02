@@ -1,3 +1,3 @@
-﻿  simulator.cpp
+﻿  hw4_Source.cpp
 simulator.obj : error LNK2019: unresolved external symbol "public: __cdecl Passenger::Passenger(int,int)" (??0Passenger@@QEAA@HH@Z) referenced in function "public: void __cdecl Simulator::run_simulation(int)" (?run_simulation@Simulator@@QEAAXH@Z)
 C:\Homework 4\Elevator Project\Homework_4_main\x64\Debug\Homework_4_main.exe : fatal error LNK1120: 1 unresolved externals

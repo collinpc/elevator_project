@@ -20,4 +20,5 @@ int main()
 	
 	sim1->run_simulation(12);
 	system("PAUSE");
+
 }
