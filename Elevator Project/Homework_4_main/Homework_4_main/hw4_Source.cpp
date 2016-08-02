@@ -16,9 +16,11 @@ using namespace std;
 
 int main()
 {
-	Simulator * sim1 = new Simulator(1,12);
-	
-	sim1->run_simulation(12);
-	system("PAUSE");
+
+
+    
+    Simulator * sim1 = new Simulator(1, 20);
+    sim1->run_simulation(200);
+    
 
 }

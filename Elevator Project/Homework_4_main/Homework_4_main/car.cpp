@@ -18,11 +18,12 @@ Elevator_System::Car::Car(Elevator_System * Elevator_System_ptr) {
     for (int c = 0; c < number_of_floors; c++) {
         floors_to_stop_at[c] = "Null";
     }
+    busy = 0;
 }
 
 bool Elevator_System::Car::is_busy() //not done
 {
-	return false;
+	return busy;
 }
 
 void Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
@@ -38,12 +39,11 @@ void Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
         direction = "up";
     } else if (floor < current_floor) {
         direction = "down";
-    } else if (current_floor == floor && time_to_next_floor == 0){
+    } else if (current_floor == floor){
         if (direction == "down") {
-            
             load_car(elevator_system_ptr->floors[floor].down_queue);
         } else {
-            load_car(elevator_system_ptr->floors[floor].down_queue);
+            load_car(elevator_system_ptr->floors[floor].up_queue);
             
         }
     }    
@@ -65,6 +65,16 @@ void Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
         }
         new_passengers->pop();
         busy = 1;
+        if (direction == "up")
+            if (elevator_system_ptr->up_list->Get(current_floor)) {
+                elevator_system_ptr->up_list->Remove(current_floor);
+            }
+        
+        else if (direction == "down") {
+            if (elevator_system_ptr->up_list->Get(current_floor)) {
+                elevator_system_ptr->up_list->Remove(current_floor);
+            }
+        }
     }
 }
 
@@ -74,6 +84,7 @@ void Elevator_System::Car::move() {
         if (time_to_next_floor == 0) {
             current_floor--;
             if (check_floor()) {
+                cout << "stopping at floor " << current_floor << endl;
                 handle_floor_load_unload();
             }
             time_to_next_floor = 3;
@@ -84,6 +95,7 @@ void Elevator_System::Car::move() {
         if (time_to_next_floor == 0) {
             current_floor++;
             if (check_floor()) {
+                cout << "stopping at floor " << current_floor << endl;
                 handle_floor_load_unload();
             }
             
@@ -106,34 +118,25 @@ bool Elevator_System::Car::check_floor() {
 
     if (current_floor == home_floor)
         direction = "home";
-    
-    cout << floors_to_stop_at[current_floor] << endl;
     if ((floors_to_stop_at[current_floor] == "down") && (current_floor == change_direction_floor)) {
-        cout << "HERE5" << endl;
         direction = "down";
         floors_to_stop_at[current_floor] = "Null";
         return 1;
     } else if ((floors_to_stop_at[current_floor] == "up") & (current_floor == change_direction_floor)) {
-        cout << "HERE7" << endl;
         direction = "up";
         floors_to_stop_at[current_floor] = "Null";
         return 1;
     } else if (floors_to_stop_at[current_floor] != "Null") {
-        cout << "HERE" << endl;
         floors_to_stop_at[current_floor] = "Null";
         return 1;
     }
     else if (elevator_system_ptr->down_list->Get(current_floor) && direction =="down") {
-        cout << "HERE2" << endl;
         return 1;
     }
     else if (elevator_system_ptr->up_list->Get(current_floor) && direction =="up") {
-        cout << "HERE3" << endl;
         return 1;
     }
     return false;
-    
-    
 }
 
 int Elevator_System::Car::get_lowest_floor()
@@ -150,24 +153,24 @@ int Elevator_System::Car::get_lowest_floor()
 
 int Elevator_System::Car::get_highest_floor()
 {
-	for (int c = number_of_floors; c < 0; c--)
+    
+	for (int c = 12; c > 0; c--)
 	{
 		if (floors_to_stop_at[c] != "Null")
 		{
+            //cout << "returning " << c << endl;
 			return c;
 		}
 	}
-	return -99;
+	return 0;
 }
 
 // Removes passengers who are on the correct floor
 void Elevator_System::Car::unload_car() {
-    cout << "unloading Passanger" << endl;
     
     forward_list<Passenger>* passengers1 = new forward_list<Passenger>;
     
     for (auto it = passengers->begin(); it != passengers->end(); ++it) {
-        cout << "entered";
         time_to_next_floor = time_to_next_floor + pass_load_time;
         if ((*it).get_floor_to() == current_floor) {
             it->~Passenger();

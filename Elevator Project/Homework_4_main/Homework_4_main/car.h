@@ -24,7 +24,7 @@ class Elevator_System::Car
 private:
 
 	int travel_time_total;
-    int static const number_of_floors = 12;
+    const static int number_of_floors = 12;
 	int time_between_floors = 3; // seconds
 	int const min_floor_time = 5; // seconds
 	int const pass_load_time = 1; // Time for each passenger to load
@@ -56,6 +56,10 @@ public:
     bool is_busy();
 	string floors_to_stop_at[number_of_floors];
     void move();
+    
+    int get_current_floor() {
+        return current_floor;
+    }
     
     void stats();
     

@@ -3,14 +3,14 @@
 #include "simulator.h"
 #include "elevator_system.h"
 #include <time.h>
-#include <windows.h>
+//#include <windows.h>
 
 Simulator::Simulator(int cars, int people)
 {
 	passenger_num = people;
 	num_cars = cars;
 
-	//elevator_system_ptr = new Elevator_System(cars);
+	elevator_system_ptr = new Elevator_System(cars);
 }
 
 
@@ -44,18 +44,21 @@ void Simulator::run_simulation(int time)
 
 	for (int i = 0; i < time; i++)
 	{
+        elevator_system_ptr->tick();
 		if (i%interval ==0)
 		{
-			int from = rand() % 12 + 1;
-			int to = rand() % 12 + 1;
+			int from = rand() % 12;
+			int to = rand() % 12;
 
 			while (from == to)
 			{
 				from = rand() % 12 + 1;
 				to = rand() % 12 + 1;
 			}
+            cout << "Making new passenger, floor: " << from << " to " << to << endl;
 			Passenger * temp_passenger = new Passenger(from, to);
 				//randomly generate floor from, floor to
+            elevator_system_ptr->call_elevator(temp_passenger);
 
 		}
 	}

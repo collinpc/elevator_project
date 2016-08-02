@@ -30,7 +30,7 @@ protected:
 public:
     class Car;
     class Floor;
-    Elevator_System(int number_of_floors, int number_of_cars);
+    Elevator_System(int number_of_cars);
     
     // See if any cars can services the requsts in the queue ... Possiblt make protected **
     void service_requests();
