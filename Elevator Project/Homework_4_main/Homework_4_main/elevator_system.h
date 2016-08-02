@@ -10,6 +10,7 @@
 //#include "floor.h"
 #include <string>
 #include <vector>
+#include "simulator.h"
 #include "passenger.h"
 #include <forward_list>
 #include <queue>
@@ -19,7 +20,7 @@
 using namespace std;
 
 //Controls interactions between the Floors and Cars
-class Elevator_System
+class Simulator::Elevator_System
 {
 protected:
     // Cars check these to see if they can pick up a passengers traveling in the same direction,
@@ -30,7 +31,7 @@ protected:
 public:
     class Car;
     class Floor;
-    Elevator_System(int number_of_cars);
+    Elevator_System(int number_of_cars, Simulator * Simulator_ptr);
     
     // See if any cars can services the requsts in the queue ... Possiblt make protected **
     void service_requests();

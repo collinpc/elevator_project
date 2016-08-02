@@ -4,13 +4,14 @@
 #include "passenger.h"
 #include "elevator_system.h"
 #include <string>
+#include "simulator.h"
 // Controls
 #ifndef FLOOR
 #define FLOOR
 
 
 //Controls interactions between the Floors and Cars
-class Elevator_System::Floor
+class Simulator::Elevator_System::Floor
 {
     friend class Elevator_System::Car;
 public:

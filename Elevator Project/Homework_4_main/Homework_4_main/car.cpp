@@ -8,9 +8,10 @@
 
 #include "car.h"
 #include "floor.h"
+#include "simulator.h"
 #include "elevator_system.h"
 
-Elevator_System::Car::Car(Elevator_System * Elevator_System_ptr) {
+Simulator::Elevator_System::Car::Car(Elevator_System * Elevator_System_ptr, Simulator * Simulator_ptr1) {
     current_floor = home_floor;
     elevator_system_ptr = Elevator_System_ptr;
     time_to_next_floor = 0;
@@ -19,14 +20,15 @@ Elevator_System::Car::Car(Elevator_System * Elevator_System_ptr) {
         floors_to_stop_at[c] = "Null";
     }
     busy = 0;
+    Simulator_ptr = Simulator_ptr1;
 }
 
-bool Elevator_System::Car::is_busy() //not done
+bool Simulator::Elevator_System::Car::is_busy() //not done
 {
 	return busy;
 }
 
-void Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
+void Simulator::Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
     
     time_to_next_floor = time_between_floors;
     // add return 0 if elevator is busy
@@ -50,7 +52,7 @@ void Elevator_System::Car::send_to_floor(int floor, string intended_direction) {
 }
 
 //Remove people from floor que and add them to Car Que. Also signal floors to stop at.
-void Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
+void Simulator::Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
     cout << "Loading Passengers" << endl;
     for (unsigned int c = 0; c < new_passengers->size(); c++) {
         Passenger passenger = new_passengers->front();
@@ -79,7 +81,7 @@ void Elevator_System::Car::load_car(queue<Passenger> *new_passengers) {
 }
 
 
-void Elevator_System::Car::move() {
+void Simulator::Elevator_System::Car::move() {
     if (direction == "down") {
         if (time_to_next_floor == 0) {
             current_floor--;
@@ -110,11 +112,11 @@ void Elevator_System::Car::move() {
     }
 }
 
-string Elevator_System::Car::get_direction() {
+string Simulator::Elevator_System::Car::get_direction() {
     return direction;
 }
 
-bool Elevator_System::Car::check_floor() {
+bool Simulator::Elevator_System::Car::check_floor() {
 
     if (current_floor == home_floor)
         direction = "home";
@@ -139,7 +141,7 @@ bool Elevator_System::Car::check_floor() {
     return false;
 }
 
-int Elevator_System::Car::get_lowest_floor()
+int Simulator::Elevator_System::Car::get_lowest_floor()
 {
 	for (unsigned int c = 0; c < number_of_floors; c++)
 	{
@@ -151,10 +153,10 @@ int Elevator_System::Car::get_lowest_floor()
 	return -99;
 }
 
-int Elevator_System::Car::get_highest_floor()
+int Simulator::Elevator_System::Car::get_highest_floor()
 {
     
-	for (int c = 12; c > 0; c--)
+	for (int c = 11; c >= 0; c--)
 	{
 		if (floors_to_stop_at[c] != "Null")
 		{
@@ -166,23 +168,25 @@ int Elevator_System::Car::get_highest_floor()
 }
 
 // Removes passengers who are on the correct floor
-void Elevator_System::Car::unload_car() {
+void Simulator::Elevator_System::Car::unload_car() {
     
     forward_list<Passenger>* passengers1 = new forward_list<Passenger>;
     
     for (auto it = passengers->begin(); it != passengers->end(); ++it) {
         time_to_next_floor = time_to_next_floor + pass_load_time;
         if ((*it).get_floor_to() == current_floor) {
+            Simulator_ptr->handle_data((*it));
             it->~Passenger();
         } else {
             passengers1->push_front(*it);
         }
     }
     passengers = passengers1;
+    
 }
 
 
-void Elevator_System::Car::handle_floor_load_unload() {
+void Simulator::Elevator_System::Car::handle_floor_load_unload() {
     time_to_next_floor = min_floor_time;
     unload_car();
     
@@ -200,7 +204,7 @@ void Elevator_System::Car::handle_floor_load_unload() {
     }
 }
 
-void Elevator_System::Car::send_home() {
+void Simulator::Elevator_System::Car::send_home() {
     if (current_floor > home_floor) {
         direction = "down";
     } else if (current_floor < home_floor) {
@@ -211,7 +215,7 @@ void Elevator_System::Car::send_home() {
     }
 }
 
-void Elevator_System::Car::stats() {
+void Simulator::Elevator_System::Car::stats() {
     cout << "Passenger length>1 " << !passengers->empty() << endl;
     cout << "Current Floor: " << current_floor << endl;
     cout << "Direction: " << direction << endl;

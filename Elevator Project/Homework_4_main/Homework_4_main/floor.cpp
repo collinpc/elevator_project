@@ -2,11 +2,11 @@
 #include <iostream>
 using namespace std;
 
-Elevator_System::Floor::Floor() {
+Simulator::Elevator_System::Floor::Floor() {
     
 }
 
-void Elevator_System::Floor::add_to_queue(Passenger *passenger, string direction)
+void Simulator::Elevator_System::Floor::add_to_queue(Passenger *passenger, string direction)
 {
 	if (direction == "down")
 	{

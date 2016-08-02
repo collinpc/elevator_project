@@ -8,14 +8,17 @@
 #include "elevator_system.h"
 #include <stdio.h>
 #include "car.h"
-#include "floor.h"
+#include "simulator.h"
+//#include "floor.h"
 
-Elevator_System::Elevator_System(int num_of_cars) {
+
+Simulator::Elevator_System::Elevator_System(int num_of_cars, Simulator * Simulator_ptr) {
     number_of_cars = num_of_cars;
     // Create list of cars
     
     for (int c = 0; c < number_of_cars; c++) {
-        cars.push_front(new Car(this));
+        
+        cars.push_front(new Car(this, Simulator_ptr));
     }
     for (int c = 0; c < 12; c++) {
         floors.push_back(Floor());
@@ -25,7 +28,7 @@ Elevator_System::Elevator_System(int num_of_cars) {
     
 }
 
-void Elevator_System::tick() {
+void Simulator::Elevator_System::tick() {
     for (auto it = cars.begin(); it != cars.end(); ++it)
     {
         
@@ -35,12 +38,12 @@ void Elevator_System::tick() {
     }
 }
 // Access que of correct floor and direction, add passenger to that queue
-void Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
+void Simulator::Elevator_System::add_to_que(int floor, Passenger *passenger, string direction) {
 	floors[floor].add_to_queue(passenger, direction);
 }
 
 
-void Elevator_System::add_floor(int floor, string direction)
+void Simulator::Elevator_System::add_floor(int floor, string direction)
 {
 
 	if (direction == "up")
@@ -59,7 +62,7 @@ void Elevator_System::add_floor(int floor, string direction)
 
 }
 
-bool Elevator_System::car_in_route(int floor, string direction) // iterates through all the cars, for each car, looks at floors each car has to go to (array) wip, check if same direction as front of stack (request->front)
+bool Simulator::Elevator_System::car_in_route(int floor, string direction) // iterates through all the cars, for each car, looks at floors each car has to go to (array) wip, check if same direction as front of stack (request->front)
 
 {
 	for (auto it = cars.begin(); it != cars.end(); ++it)
@@ -91,7 +94,7 @@ bool Elevator_System::car_in_route(int floor, string direction) // iterates thro
 
 
 
-void Elevator_System::add_request(int floor, string direction)
+void Simulator::Elevator_System::add_request(int floor, string direction)
 {
 
 	struct Request temp_request = {floor, direction};
@@ -99,7 +102,7 @@ void Elevator_System::add_request(int floor, string direction)
 	
 }
 
-Elevator_System::Car * Elevator_System::pick_car()
+Simulator::Elevator_System::Car * Simulator::Elevator_System::pick_car()
 {
     for (auto it = cars.begin(); it != cars.end(); ++it) {
 		if (!((*it)->is_busy())) {
@@ -111,7 +114,7 @@ Elevator_System::Car * Elevator_System::pick_car()
 
 
 
-void Elevator_System::call_elevator(Passenger* passenger)
+void Simulator::Elevator_System::call_elevator(Passenger* passenger)
 {
     string direction = "up";
     int floor = passenger->get_floor_from();
@@ -146,7 +149,7 @@ void Elevator_System::call_elevator(Passenger* passenger)
 	}
 }
 
-void Elevator_System::service_requests() {
+void Simulator::Elevator_System::service_requests() {
     if (requests->empty()) {
         cout << "No requests";
         return;

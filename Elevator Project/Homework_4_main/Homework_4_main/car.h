@@ -9,16 +9,17 @@
 #include "passenger.h"
 #include <map>
 #include "floor.h"
-#include "elevator_system.h"
+//#include "elevator_system.h"
 #include <forward_list>
 //#include "elevator_system.h"
 #include <string>
 #include "bst.h"
+#include "simulator.h"
 using namespace std;
 
 
 
-class Elevator_System::Car
+class Simulator::Elevator_System::Car
 {
     
 private:
@@ -39,6 +40,7 @@ private:
     int change_direction_floor;
     int time_to_next_floor; // time until the elevator will reach next floor
     int time_until_departure;
+    Simulator * Simulator_ptr;
     string direction;
     
     //NEED TO MAKE THIS SOMETHING ELSE
@@ -51,7 +53,7 @@ private:
     void unload_car();
     
 public:
-    Car(Elevator_System * Elevator_System_ptr);
+    Car(Elevator_System * Elevator_System_ptr, Simulator * Simulator_ptr1);
 
     bool is_busy();
 	string floors_to_stop_at[number_of_floors];
