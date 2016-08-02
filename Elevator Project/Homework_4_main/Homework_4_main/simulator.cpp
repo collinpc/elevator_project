@@ -17,22 +17,25 @@ Simulator::Simulator(int cars, int people)
 void Simulator::handle_data(Passenger passenger)
 {
 	cout << "Average Time---------------------------------------------------------------";
-	
+	passenger.passenger_info();
 	total_passengers++; // adds 1 to the number of passengers served
 	
+
 	trip_times.push_back(calculate_trip_time()); //adds the wait total for the current passenger?
 	arrival_times.push_back(calculate_arrival_wait_time()); // adds the arrival wait time for the current passenger?
 
-	total_times = calculate_trip_time() + total_times;
+	total_times = passenger.calculate_trip_time() + total_times;
+	average_wait_time = passenger.calculate_arrival_wait_time() + average_wait_time;
 	average_time = total_times / total_passengers; //calculates the average trip time	
 	
 }
 
 void Simulator::print_data()
 {
-	passenger_info();
-	cout << "\n\nTotal passengers " << total_passengers << endl;
+
+	cout << "\n\nTotal passengers (That made it through in the allotted time) " << total_passengers << endl;
 	cout << "Average_time: " << average_time << endl;
+	cout << "Average wait time: " << average_wait_time/total_passengers << endl;
 
 
 }
@@ -44,7 +47,7 @@ void Simulator::run_simulation(int time)
 
 	for (int i = 0; i < time; i++)
 	{
-        elevator_system_ptr->tick();
+        elevator_system_ptr->tick(i);
 		if (i%interval ==0)
 		{
 			int from = rand() % 12;
@@ -57,7 +60,8 @@ void Simulator::run_simulation(int time)
 			}
             cout << "Making new passenger, floor: " << from << " to " << to << endl;
 			Passenger * temp_passenger = new Passenger(from, to);
-				//randomly generate floor from, floor to
+				//randomly generate floor from, floor to 
+			temp_passenger->set_call_time(i);
             elevator_system_ptr->call_elevator(temp_passenger);
 
 		}

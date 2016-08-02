@@ -25,6 +25,8 @@ class Simulator::Elevator_System::Car
     
 private:
 
+	int current_time;
+
 	int travel_time_total;
     const static int number_of_floors = 12;
 	int time_between_floors = 3; // seconds
@@ -58,7 +60,7 @@ public:
 
     bool is_busy();
 	string floors_to_stop_at[number_of_floors];
-    void move();
+    void move(int time);
     
     int get_current_floor() {
         return current_floor;

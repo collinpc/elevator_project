@@ -36,7 +36,7 @@ public:
     // See if any cars can services the requsts in the queue ... Possiblt make protected **
     void service_requests();
     
-    void tick();
+    void tick(int time);
     
     // Address a call.. Possibly make protected
     void call_elevator(Passenger* passenger); //**

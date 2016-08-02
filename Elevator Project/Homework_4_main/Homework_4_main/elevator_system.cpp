@@ -28,12 +28,12 @@ Simulator::Elevator_System::Elevator_System(int num_of_cars, Simulator * Simulat
     
 }
 
-void Simulator::Elevator_System::tick() {
+void Simulator::Elevator_System::tick(int time) {
     for (auto it = cars.begin(); it != cars.end(); ++it)
     {
         
-        (*it)->move();
-        (*it)->stats();
+        (*it)->move(time);
+       // (*it)->stats();
         service_requests();
     }
 }
@@ -72,8 +72,8 @@ bool Simulator::Elevator_System::car_in_route(int floor, string direction) // it
 //        cout << "Person supposidly goin " << direction << endl;
 		if (((*it)->get_direction() == direction) && (direction == "down"))
 		{
-            cout << "Lowest Car Floor: " << (*it)->get_lowest_floor() << endl;
-            cout << "Floor: " << floor << endl;
+           // cout << "Lowest Car Floor: " << (*it)->get_lowest_floor() << endl;
+           // cout << "Floor: " << floor << endl;
 			if (((*it)->get_lowest_floor() <= floor) && (floor > (*it)->get_current_floor()))
 			{
 				return true;
@@ -82,8 +82,8 @@ bool Simulator::Elevator_System::car_in_route(int floor, string direction) // it
 		}
 
 		if (((*it)->get_direction() == direction) && (direction == "up"))
-            cout << "Highest Car Floor: " << (*it)->get_highest_floor() << endl;
-            cout << "Floor: " << floor << endl;
+           // cout << "Highest Car Floor: " << (*it)->get_highest_floor() << endl;
+           // cout << "Floor: " << floor << endl;
 			if (((*it)->get_highest_floor() >= floor) && (floor < (*it)->get_current_floor()) )
 			{
 				return true;
@@ -151,7 +151,7 @@ void Simulator::Elevator_System::call_elevator(Passenger* passenger)
 
 void Simulator::Elevator_System::service_requests() {
     if (requests->empty()) {
-        cout << "No requests";
+       // cout << "No requests";
         return;
     }
     Car * temp_car = NULL;

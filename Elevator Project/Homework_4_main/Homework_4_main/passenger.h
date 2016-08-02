@@ -19,7 +19,7 @@ protected:  //Made protected so can be accessed by simulator class
 	int call_time;
 	int exit_time;
 	int trip_time;
-	int calculate_arrival_wait_time();
+	
 
 
 
@@ -32,7 +32,7 @@ public:
     Passenger();
     Passenger(int from, int to);
 
-    
+	int calculate_arrival_wait_time();
     
 	//setters
 

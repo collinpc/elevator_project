@@ -28,6 +28,7 @@ public:
 
 private:
     
+	int average_wait_time = 0;
     int num_cars = 0;
     int num_floors = 0;
     int passenger_num = 0;

@@ -19,8 +19,8 @@ int main()
 
 
     
-    Simulator * sim1 = new Simulator(1, 20);
-    sim1->run_simulation(200);
+    Simulator * sim1 = new Simulator(1, 50);
+    sim1->run_simulation(2000);
 	sim1->print_data();
 	system("PAUSE");
 

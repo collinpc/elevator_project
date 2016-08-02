@@ -56,6 +56,7 @@ void Simulator::Elevator_System::Car::load_car(queue<Passenger> *new_passengers)
     cout << "Loading Passengers" << endl;
     for (unsigned int c = 0; c < new_passengers->size(); c++) {
         Passenger passenger = new_passengers->front();
+		passenger.set_arival_time(current_time);
         cout << "Passenger going to floor " << passenger.get_floor_to() << endl;
         passengers->push_front(passenger);
         if (floors_to_stop_at[passenger.get_floor_to()] == "Null")
@@ -81,7 +82,8 @@ void Simulator::Elevator_System::Car::load_car(queue<Passenger> *new_passengers)
 }
 
 
-void Simulator::Elevator_System::Car::move() {
+void Simulator::Elevator_System::Car::move(int time) {
+	current_time = time;
     if (direction == "down") {
         if (time_to_next_floor == 0) {
             current_floor--;
@@ -175,7 +177,7 @@ void Simulator::Elevator_System::Car::unload_car() {
     for (auto it = passengers->begin(); it != passengers->end(); ++it) {
         time_to_next_floor = time_to_next_floor + pass_load_time;
         if ((*it).get_floor_to() == current_floor) {
-
+			(*it).set_exit_time(current_time);
             Simulator_ptr->handle_data((*it));
             it->~Passenger();
         } else {
