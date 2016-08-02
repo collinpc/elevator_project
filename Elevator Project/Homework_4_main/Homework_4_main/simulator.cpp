@@ -10,7 +10,7 @@ Simulator::Simulator(int cars, int people)
 	passenger_num = people;
 	num_cars = cars;
 
-	elevator_system_ptr = new Elevator_System(cars);
+	elevator_system_ptr = new Elevator_System(cars, this);
 }
 
 
