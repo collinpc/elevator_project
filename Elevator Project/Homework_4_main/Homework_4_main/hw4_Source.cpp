@@ -16,8 +16,43 @@ using namespace std;
 
 int main()
 {
-	Simulator * sim1 = new Simulator(1,12);
-	
-	sim1->run_simulation(12);
-	system("PAUSE");
+    
+    Simulator * sim1 = new Simulator(1, 20);
+    sim1->run_simulation(200);
+    
+//    Elevator_System * sys1 = new Elevator_System(1);
+//    Passenger * pass1 = new Passenger(2, 3);
+//    sys1->call_elevator(pass1);
+//    sys1->tick();
+//    Passenger * pass2 = new Passenger(5, 4);
+//    sys1->call_elevator(pass2);
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+//    sys1->tick();
+    
 }

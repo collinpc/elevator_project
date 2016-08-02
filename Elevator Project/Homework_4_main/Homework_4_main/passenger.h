@@ -30,8 +30,9 @@ public:
     //Constructors
     
     Passenger();
+    Passenger(int from, int to);
 
-	Passenger(int from, int to);
+    
     
 	//setters
 

@@ -7,19 +7,25 @@
 // create function to output information (time it took to do whatever)
 
 Passenger::Passenger() {
+    
+}
+
+Passenger::Passenger(int from, int to) {
     cout << "creating new passenger" << endl;
-    set_floor_from(2);
-    set_floor_to(1);
+    set_floor_from(from);
+    set_floor_to(to);
     set_call_time(2);
     set_arival_time(4);
     set_exit_time(10);
 	
 }
 
+
+
 // Functions
 
 Passenger::~Passenger() {
-    cout << "Passenger went from floor " << this->get_floor_from() << " to " << this->get_floor_to() << endl;;
+    cout << "Passenger went from floor " << this->get_floor_from() << " to " << this->get_floor_to() << endl;
 }
 
 int Passenger::calculate_arrival_wait_time() {
