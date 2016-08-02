@@ -154,7 +154,7 @@ int Elevator_System::Car::get_lowest_floor()
 int Elevator_System::Car::get_highest_floor()
 {
     
-	for (int c = 12; c > 0; c--)
+	for (int c = 11; c >= 0; c--)
 	{
 		if (floors_to_stop_at[c] != "Null")
 		{

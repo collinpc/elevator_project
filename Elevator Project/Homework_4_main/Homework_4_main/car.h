@@ -11,9 +11,11 @@
 #include "floor.h"
 #include "elevator_system.h"
 #include <forward_list>
-//#include "elevator_system.h"
+#include "elevator_system.h"
 #include <string>
 #include "bst.h"
+#include "simulator.h"
+
 using namespace std;
 
 
